@@ -40,7 +40,7 @@ class WeatherScreen extends StatelessWidget {
 
   AspectRatio _placeholderImage() {
     return const AspectRatio(
-      aspectRatio: 1 / 1,
+      aspectRatio: 1,
       child: Placeholder(),
     );
   }
