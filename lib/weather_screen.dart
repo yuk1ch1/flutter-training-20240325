@@ -6,15 +6,18 @@ class WeatherScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const margin = SizedBox(height: 80);
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: FractionallySizedBox(
           widthFactor: 1 / 2,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _placeholderImage(),
-              const Padding(
+              AspectRatio(
+                aspectRatio: 1,
+                child: Placeholder(),
+              ),
+              Padding(
                 padding: EdgeInsets.all(16),
                 child: Row(
                   children: [
@@ -30,22 +33,20 @@ class WeatherScreen extends StatelessWidget {
                 ),
               ),
               margin,
-              _buttonRow(),
+              _Buttons(),
             ],
           ),
         ),
       ),
     );
   }
+}
 
-  AspectRatio _placeholderImage() {
-    return const AspectRatio(
-      aspectRatio: 1,
-      child: Placeholder(),
-    );
-  }
+class _Buttons extends StatelessWidget {
+  const _Buttons();
 
-  Row _buttonRow() {
+  @override
+  Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
