@@ -11,8 +11,8 @@ class WeatherScreen extends StatelessWidget {
         child: FractionallySizedBox(
           widthFactor: 1 / 2,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Spacer(),
               AspectRatio(
                 aspectRatio: 1,
                 child: Placeholder(),
@@ -32,8 +32,14 @@ class WeatherScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              margin,
-              _Buttons(),
+              Flexible(
+                child: Column(
+                  children: [
+                    margin,
+                    _Buttons(),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
