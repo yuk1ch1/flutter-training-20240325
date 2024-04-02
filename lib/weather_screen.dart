@@ -14,7 +14,21 @@ class WeatherScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _placeholderImage(),
-              _temperatureRow(context),
+              const Padding(
+                padding: EdgeInsets.all(16),
+                child: Row(
+                  children: [
+                    _TemperatureText(
+                      text: '** ℃',
+                      color: Colors.blue,
+                    ),
+                    _TemperatureText(
+                      text: '** ℃',
+                      color: Colors.red,
+                    ),
+                  ],
+                ),
+              ),
               margin,
               _buttonRow(),
             ],
@@ -31,39 +45,6 @@ class WeatherScreen extends StatelessWidget {
     );
   }
 
-  Row _temperatureRow(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            child: Text(
-              '** ℃',
-              style: Theme.of(context)
-                  .textTheme
-                  .labelLarge
-                  ?.copyWith(color: Colors.blue),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            child: Text(
-              '** ℃',
-              style: Theme.of(context)
-                  .textTheme
-                  .labelLarge
-                  ?.copyWith(color: Colors.red),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
   Row _buttonRow() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -77,6 +58,29 @@ class WeatherScreen extends StatelessWidget {
           child: const Text('reload', style: TextStyle(color: Colors.blue)),
         ),
       ],
+    );
+  }
+}
+
+class _TemperatureText extends StatelessWidget {
+  const _TemperatureText({
+    required String text,
+    required Color color,
+  })  : _color = color,
+        _text = text;
+
+  final String _text;
+  final Color _color;
+
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme.labelLarge!;
+    return Expanded(
+      child: Text(
+        _text,
+        style: textTheme.copyWith(color: _color),
+        textAlign: TextAlign.center,
+      ),
     );
   }
 }
