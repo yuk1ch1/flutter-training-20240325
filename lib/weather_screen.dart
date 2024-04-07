@@ -8,21 +8,22 @@ class WeatherScreen extends StatefulWidget {
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
+  static const margin = SizedBox(height: 80);
+
   @override
   Widget build(BuildContext context) {
-    const margin = SizedBox(height: 80);
-    return const Scaffold(
+    return Scaffold(
       body: Center(
         child: FractionallySizedBox(
           widthFactor: 1 / 2,
           child: Column(
             children: [
-              Spacer(),
-              AspectRatio(
+              const Spacer(),
+              const AspectRatio(
                 aspectRatio: 1,
                 child: Placeholder(),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.all(16),
                 child: Row(
                   children: [
@@ -41,7 +42,25 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 child: Column(
                   children: [
                     margin,
-                    _Buttons(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        TextButton(
+                          onPressed: () => debugPrint('タップ - close'),
+                          child: const Text(
+                            'close',
+                            style: TextStyle(color: Colors.blue),
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () => debugPrint('タップ - reload'),
+                          child: const Text(
+                            'reload',
+                            style: TextStyle(color: Colors.blue),
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
@@ -49,27 +68,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _Buttons extends StatelessWidget {
-  const _Buttons();
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        TextButton(
-          onPressed: () => debugPrint('タップ - close'),
-          child: const Text('close', style: TextStyle(color: Colors.blue)),
-        ),
-        TextButton(
-          onPressed: () => debugPrint('タップ - reload'),
-          child: const Text('reload', style: TextStyle(color: Colors.blue)),
-        ),
-      ],
     );
   }
 }
