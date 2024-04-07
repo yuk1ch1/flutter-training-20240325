@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_training/model/weather.dart';
+import 'package:flutter_training/model/weather_condition.dart';
+import 'package:yumemi_weather/yumemi_weather.dart';
 
 class WeatherScreen extends StatefulWidget {
   const WeatherScreen({super.key});
@@ -8,6 +12,8 @@ class WeatherScreen extends StatefulWidget {
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
+  final _model = Weather(client: YumemiWeather());
+  WeatherCondition? _currentWeather;
   static const margin = SizedBox(height: 80);
 
   @override
@@ -19,10 +25,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
           child: Column(
             children: [
               const Spacer(),
-              const AspectRatio(
-                aspectRatio: 1,
-                child: Placeholder(),
-              ),
+              _WeatherImage(currentWeather: _currentWeather),
               const Padding(
                 padding: EdgeInsets.all(16),
                 child: Row(
@@ -53,7 +56,11 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           ),
                         ),
                         TextButton(
-                          onPressed: () => debugPrint('タップ - reload'),
+                          onPressed: () {
+                            setState(() {
+                              _currentWeather = _model.fetch();
+                            });
+                          },
                           child: const Text(
                             'reload',
                             style: TextStyle(color: Colors.blue),
@@ -92,5 +99,37 @@ class _TemperatureText extends StatelessWidget {
         textAlign: TextAlign.center,
       ),
     );
+  }
+}
+
+class _WeatherImage extends StatelessWidget {
+  const _WeatherImage({
+    required WeatherCondition? currentWeather,
+  }) : _currentWeather = currentWeather;
+
+  final WeatherCondition? _currentWeather;
+
+  @override
+  Widget build(BuildContext context) {
+    // final currentWeather = _currentWeather;
+    return AspectRatio(
+      aspectRatio: 1,
+      child: _currentWeather == null
+          ? const Placeholder()
+          : _currentWeather!.image,
+    );
+  }
+}
+
+extension _WeatherSVGPicture on WeatherCondition {
+  SvgPicture get image {
+    switch (this) {
+      case WeatherCondition.sunny:
+        return SvgPicture.asset('images/sunny.svg');
+      case WeatherCondition.cloudy:
+        return SvgPicture.asset('images/cloudy.svg');
+      case WeatherCondition.rainy:
+        return SvgPicture.asset('images/rainy.svg');
+    }
   }
 }
