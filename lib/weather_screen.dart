@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_training/gen/assets.gen.dart';
 import 'package:flutter_training/model/weather.dart';
 import 'package:flutter_training/model/weather_condition.dart';
 import 'package:yumemi_weather/yumemi_weather.dart';
@@ -125,11 +126,11 @@ extension _WeatherSVGPicture on WeatherCondition {
   SvgPicture get image {
     switch (this) {
       case WeatherCondition.sunny:
-        return SvgPicture.asset('images/sunny.svg');
+        return Assets.images.sunny.svg();
       case WeatherCondition.cloudy:
-        return SvgPicture.asset('images/cloudy.svg');
+        return Assets.images.cloudy.svg();
       case WeatherCondition.rainy:
-        return SvgPicture.asset('images/rainy.svg');
+        return Assets.images.rainy.svg();
     }
   }
 }
