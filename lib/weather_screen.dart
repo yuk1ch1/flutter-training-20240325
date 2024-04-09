@@ -123,14 +123,9 @@ class _WeatherImage extends StatelessWidget {
 }
 
 extension _WeatherSVGPicture on WeatherCondition {
-  SvgPicture get image {
-    switch (this) {
-      case WeatherCondition.sunny:
-        return Assets.images.sunny.svg();
-      case WeatherCondition.cloudy:
-        return Assets.images.cloudy.svg();
-      case WeatherCondition.rainy:
-        return Assets.images.rainy.svg();
-    }
-  }
+  SvgPicture get image => switch (this) {
+    WeatherCondition.sunny => Assets.images.sunny.svg(),    
+    WeatherCondition.cloudy => Assets.images.cloudy.svg(),    
+    WeatherCondition.rainy => Assets.images.rainy.svg(),
+  };
 }
