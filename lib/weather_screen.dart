@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_training/gen/assets.gen.dart';
 import 'package:flutter_training/model/weather.dart';
 import 'package:flutter_training/model/weather_condition.dart';
+import 'package:flutter_training/weather_image.dart';
 import 'package:yumemi_weather/yumemi_weather.dart';
 
 class WeatherScreen extends StatefulWidget {
@@ -26,7 +25,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
           child: Column(
             children: [
               const Spacer(),
-              _WeatherImage(currentWeather: _currentWeather),
+              WeatherImage(currentWeather: _currentWeather),
               const Padding(
                 padding: EdgeInsets.all(16),
                 child: Row(
@@ -101,31 +100,4 @@ class _TemperatureText extends StatelessWidget {
       ),
     );
   }
-}
-
-class _WeatherImage extends StatelessWidget {
-  const _WeatherImage({
-    required WeatherCondition? currentWeather,
-  }) : _currentWeather = currentWeather;
-
-  final WeatherCondition? _currentWeather;
-
-  @override
-  Widget build(BuildContext context) {
-    // final currentWeather = _currentWeather;
-    return AspectRatio(
-      aspectRatio: 1,
-      child: _currentWeather == null
-          ? const Placeholder()
-          : _currentWeather!.image,
-    );
-  }
-}
-
-extension _WeatherSVGPicture on WeatherCondition {
-  SvgPicture get image => switch (this) {
-    WeatherCondition.sunny => Assets.images.sunny.svg(),    
-    WeatherCondition.cloudy => Assets.images.cloudy.svg(),    
-    WeatherCondition.rainy => Assets.images.rainy.svg(),
-  };
 }
