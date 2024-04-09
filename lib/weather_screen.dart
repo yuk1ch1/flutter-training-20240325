@@ -13,7 +13,7 @@ class WeatherScreen extends StatefulWidget {
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
-  final _model = Weather(client: YumemiWeather());
+  final _weather = Weather(client: YumemiWeather());
   WeatherCondition? _currentWeather;
   static const margin = SizedBox(height: 80);
 
@@ -59,7 +59,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                         TextButton(
                           onPressed: () {
                             setState(() {
-                              _currentWeather = _model.fetch();
+                              _currentWeather = _weather.fetch();
                             });
                           },
                           child: const Text(
