@@ -14,6 +14,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         '/': (context) => const FirstScreen(),
+        '/weather': (context) => const WeatherScreen(),
       },
     );
   }

@@ -49,7 +49,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         TextButton(
-                          onPressed: () => debugPrint('タップ - close'),
+                          onPressed: () => Navigator.of(context).pop(),
                           child: const Text(
                             'close',
                             style: TextStyle(color: Colors.blue),
