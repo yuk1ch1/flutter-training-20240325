@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class FirstScreen extends StatefulWidget {
   const FirstScreen({super.key});
@@ -28,7 +29,7 @@ class _FirstScreenState extends State<FirstScreen> {
     const fiveSeconds = Duration(milliseconds: 500);
     await Future<void>.delayed(fiveSeconds);
     if (mounted) {
-      await Navigator.of(context).pushNamed('/weather');
+      await context.push('/weather');
       unawaited(_navigateToWeather());
     }
   }
