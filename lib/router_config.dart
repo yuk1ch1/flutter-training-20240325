@@ -1,4 +1,4 @@
-import 'package:flutter_training/first_screen.dart';
+import 'package:flutter_training/ui/first_screen.dart';
 import 'package:flutter_training/ui/weather_screen.dart';
 import 'package:go_router/go_router.dart';
 
