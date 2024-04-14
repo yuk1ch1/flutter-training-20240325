@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_training/router_config.dart';
 
 class FirstScreen extends StatefulWidget {
   const FirstScreen({super.key});
@@ -11,7 +11,6 @@ class FirstScreen extends StatefulWidget {
 }
 
 class _FirstScreenState extends State<FirstScreen> {
-  
   @override
   void initState() {
     super.initState();
@@ -29,7 +28,7 @@ class _FirstScreenState extends State<FirstScreen> {
     const fiveSeconds = Duration(milliseconds: 500);
     await Future<void>.delayed(fiveSeconds);
     if (mounted) {
-      await context.push('/weather');
+      await const WeatherPageRoute().push<void>(context);
       unawaited(_navigateToWeather());
     }
   }
