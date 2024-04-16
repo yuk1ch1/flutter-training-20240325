@@ -29,7 +29,7 @@ class _FirstScreenState extends State<FirstScreen> {
     await Future<void>.delayed(fiveSeconds);
     if (mounted) {
       await const WeatherPageRoute().push<void>(context);
-      unawaited(_navigateToWeather());
     }
+    unawaited(_navigateToWeather());
   }
 }

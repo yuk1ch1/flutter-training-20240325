@@ -12,7 +12,7 @@ List<RouteBase> get $appRoutes => [
     ];
 
 RouteBase get $firstScreenRoute => GoRouteData.$route(
-      path: '/',
+      path: '/firstScreen',
       factory: $FirstScreenRouteExtension._fromState,
     );
 
@@ -21,7 +21,7 @@ extension $FirstScreenRouteExtension on FirstScreenRoute {
       const FirstScreenRoute();
 
   String get location => GoRouteData.$location(
-        '/',
+        '/firstScreen',
       );
 
   void go(BuildContext context) => context.go(location);

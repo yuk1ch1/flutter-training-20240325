@@ -9,6 +9,7 @@ part 'router_config.g.dart';
 final routerConfig = GoRouter(
   routes: $appRoutes,
   debugLogDiagnostics: kDebugMode,
+  initialLocation: FirstScreenRoute.path,
 );
 
 /// 最初に表示される背景色緑色の画面
@@ -19,7 +20,7 @@ final routerConfig = GoRouter(
 class FirstScreenRoute extends GoRouteData {
   const FirstScreenRoute();
 
-  static const path = '/';
+  static const path = '/firestScreen';
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
