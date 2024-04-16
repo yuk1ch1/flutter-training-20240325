@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_training/ui/weather_screen.dart';
+import 'package:flutter_training/router_config.dart';
 
 void main() {
   runApp(const MainApp());
@@ -10,8 +10,8 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: WeatherScreen(),
+    return MaterialApp.router(
+      routerConfig: routerConfig,
     );
   }
 }
