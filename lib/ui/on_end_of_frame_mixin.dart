@@ -13,6 +13,8 @@ mixin OnEndOfFrameMixin<T extends StatefulWidget> on State<T> {
   Future<void> executeOnEndOfFrame() async {
     await WidgetsBinding.instance.endOfFrame;
 
-    debugPrint('画面が表示された後に実行される処理');
+    unawaited(actionOnEndOfFrame());
   }
+
+  Future<void> actionOnEndOfFrame();
 }
