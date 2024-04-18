@@ -29,6 +29,6 @@ class _FirstScreenState extends State<FirstScreen> with OnEndOfFrameMixin {
     if (mounted) {
       await const WeatherPageRoute().push<void>(context);
     }
-    unawaited(executeOnEndOfFrame());
+    unawaited(_navigateToWeather());
   }
 }
