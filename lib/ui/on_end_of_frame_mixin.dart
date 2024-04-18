@@ -7,7 +7,6 @@ mixin OnEndOfFrameMixin<T extends StatefulWidget> on State<T> {
   void initState() {
     super.initState();
     unawaited(executeOnEndOfFrame());
-
   }
 
   Future<void> executeOnEndOfFrame() async {
