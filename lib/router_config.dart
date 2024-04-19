@@ -20,7 +20,7 @@ final routerConfig = GoRouter(
 class FirstScreenRoute extends GoRouteData {
   const FirstScreenRoute();
 
-  static const path = '/firestScreen';
+  static const path = '/firstScreen';
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
