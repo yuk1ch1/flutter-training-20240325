@@ -13,7 +13,6 @@ class WeatherImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final currentWeather = _currentWeather;
     return AspectRatio(
       aspectRatio: 1,
       child: _currentWeather == null
