@@ -9,9 +9,9 @@ enum WeatherCondition {
   factory WeatherCondition.from(String name) {
     return WeatherCondition.values.singleWhere(
       (element) => element.name == name,
-      orElse: () {
+      orElse: () { 
         debugPrint(name);
-        throw UndefinedWeather(message: 'Unexpected weather condition: $name',);
+        throw const UndefinedWeather();
       },
     );
   }

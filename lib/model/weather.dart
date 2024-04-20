@@ -14,16 +14,16 @@ class Weather {
     } on YumemiWeatherError catch (e) {
       return switch (e) {
         YumemiWeatherError.invalidParameter =>
-          const Failure(InvalidParameter(message: '入力情報に誤りがあります。入力情報をご確認ください')),
+          const Failure(InvalidParameter()),
         YumemiWeatherError.unknown =>
-          const Failure(UnknownWeather(message: '天気情報の取得に失敗しました。時間をおいて再度お試しください'),),
+          const Failure(UnknownWeather(),),
       };
     } on UndefinedWeather catch (e) {
       debugPrint(e.toString());
-      return const Failure(UndefinedWeather(message: '天気情報の取得に失敗しました。適切な情報を取得できませんでした'),);
+      return const Failure(UndefinedWeather(),);
     } on Exception catch (e) {
       debugPrint(e.toString());
-      return const Failure(UnexpectedException(message: '予期せぬエラーが発生しました。再度時間をおいてお試しください'),);
+      return const Failure(UnexpectedException(),);
     }
   }
 }

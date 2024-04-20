@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ExceptionDialog extends StatelessWidget {
-  const ExceptionDialog({required String message, super.key}) : _message = message;
+  const ExceptionDialog({required String message, super.key})
+      : _message = message;
   final String _message;
 
   @override
