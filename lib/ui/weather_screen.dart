@@ -62,13 +62,14 @@ class _WeatherScreenState extends State<WeatherScreen> {
                         ),
                         TextButton(
                           onPressed: () {
-                            try {
-                              final result = _weather.fetch();
-                              setState(() {
-                                _currentWeather = result;
-                              });
-                            } on AppException catch (e) {
-                              _showDialog(e);
+                            final result = _weather.fetch();
+                            switch (result) {
+                              case Success(value: final weather):
+                                setState(() {
+                                  _currentWeather = weather;
+                                });
+                              case Failure(exception: final exception):
+                               _showDialog(exception);
                             }
                           },
                           child: const Text(
