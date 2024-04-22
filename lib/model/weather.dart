@@ -1,16 +1,21 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_training/model/weather_condition.dart';
 import 'package:flutter_training/model/weather_exception.dart';
+import 'package:flutter_training/model/weather_request.dart';
+import 'package:flutter_training/model/weather_response.dart';
 import 'package:yumemi_weather/yumemi_weather.dart';
 
 class Weather {
   const Weather({required YumemiWeather client}) : _client = client;
   final YumemiWeather _client;
 
-  Result<WeatherCondition, AppException> fetch() {
+  Result<WeatherResponse, AppException> fetch(WeatherRequest request) {
     try {
-      final response = _client.fetchThrowsWeather('Tokyo');
-      return Success(WeatherCondition.from(response));
+      final jsonSring = jsonEncode(request);
+      final response = _client.fetchWeather(jsonSring);
+      final responseJSON = jsonDecode(response) as Map<String, dynamic>;
+      return Success(WeatherResponse.fromJson(responseJSON));
     } on YumemiWeatherError catch (e) {
       return switch (e) {
         YumemiWeatherError.invalidParameter =>

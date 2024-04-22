@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_training/model/weather.dart';
 import 'package:flutter_training/model/weather_condition.dart';
 import 'package:flutter_training/model/weather_exception.dart';
+import 'package:flutter_training/model/weather_request.dart';
 import 'package:flutter_training/ui/exception_dialog.dart';
 import 'package:flutter_training/ui/weather_image.dart';
 import 'package:go_router/go_router.dart';
@@ -62,14 +63,19 @@ class _WeatherScreenState extends State<WeatherScreen> {
                         ),
                         TextButton(
                           onPressed: () {
-                            final result = _weather.fetch();
+                            final result = _weather.fetch(
+                              WeatherRequest(
+                                area: 'Tokyo',
+                                date: DateTime.now(),
+                              ),
+                            );
                             switch (result) {
                               case Success(value: final weather):
                                 setState(() {
-                                  _currentWeather = weather;
+                                  _currentWeather = weather.weatherCondition;
                                 });
                               case Failure(exception: final exception):
-                               _showDialog(exception);
+                                _showDialog(exception);
                             }
                           },
                           child: const Text(
