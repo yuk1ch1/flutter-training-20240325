@@ -15,15 +15,20 @@ class Weather {
       return switch (e) {
         YumemiWeatherError.invalidParameter =>
           const Failure(InvalidParameter()),
-        YumemiWeatherError.unknown =>
-          const Failure(UnknownWeather(),),
+        YumemiWeatherError.unknown => const Failure(
+            UnknownWeather(),
+          ),
       };
     } on UndefinedWeather catch (e) {
       debugPrint(e.toString());
-      return const Failure(UndefinedWeather(),);
+      return const Failure(
+        UndefinedWeather(),
+      );
     } on Exception catch (e) {
       debugPrint(e.toString());
-      return const Failure(UnexpectedException(),);
+      return const Failure(
+        UnexpectedException(),
+      );
     }
   }
 }
