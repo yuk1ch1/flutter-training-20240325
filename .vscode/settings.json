@@ -7,9 +7,12 @@
     "**/.fvm": true
   },
   "editor.multiCursorModifier": "alt",
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
   "editor.guides.bracketPairs": true,
   "dart.renameFilesWithClasses": "always",
   "editor.codeActionsOnSave": {
+    "quickfix.insertSemicolon": true,
     "source.organizeImports": "explicit"
   },
   "explorer.fileNesting.enabled": true,

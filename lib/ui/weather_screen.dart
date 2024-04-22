@@ -1,6 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_training/model/weather.dart';
 import 'package:flutter_training/model/weather_condition.dart';
+import 'package:flutter_training/model/weather_exception.dart';
+import 'package:flutter_training/ui/exception_dialog.dart';
 import 'package:flutter_training/ui/weather_image.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yumemi_weather/yumemi_weather.dart';
@@ -58,9 +62,15 @@ class _WeatherScreenState extends State<WeatherScreen> {
                         ),
                         TextButton(
                           onPressed: () {
-                            setState(() {
-                              _currentWeather = _weather.fetch();
-                            });
+                            final result = _weather.fetch();
+                            switch (result) {
+                              case Success(value: final weather):
+                                setState(() {
+                                  _currentWeather = weather;
+                                });
+                              case Failure(exception: final exception):
+                               _showDialog(exception);
+                            }
                           },
                           child: const Text(
                             'reload',
@@ -75,6 +85,17 @@ class _WeatherScreenState extends State<WeatherScreen> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  void _showDialog(AppException e) {
+    return unawaited(
+      showDialog(
+        context: context,
+        builder: (context) {
+          return ExceptionDialog(message: e.message);
+        },
       ),
     );
   }
