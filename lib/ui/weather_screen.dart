@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_training/model/weather.dart';
-import 'package:flutter_training/model/weather_condition.dart';
 import 'package:flutter_training/model/weather_exception.dart';
 import 'package:flutter_training/model/weather_request.dart';
+import 'package:flutter_training/model/weather_response.dart';
 import 'package:flutter_training/ui/exception_dialog.dart';
-import 'package:flutter_training/ui/weather_image.dart';
+import 'package:flutter_training/ui/weather_display.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yumemi_weather/yumemi_weather.dart';
 
@@ -19,7 +19,7 @@ class WeatherScreen extends StatefulWidget {
 
 class _WeatherScreenState extends State<WeatherScreen> {
   final _weather = Weather(client: YumemiWeather());
-  WeatherCondition? _currentWeather;
+  WeatherResponse? _currentWeather;
   static const margin = SizedBox(height: 80);
 
   @override
@@ -31,21 +31,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
           child: Column(
             children: [
               const Spacer(),
-              WeatherImage(currentWeather: _currentWeather),
-              const Padding(
-                padding: EdgeInsets.all(16),
-                child: Row(
-                  children: [
-                    _TemperatureText(
-                      text: '** ℃',
-                      color: Colors.blue,
-                    ),
-                    _TemperatureText(
-                      text: '** ℃',
-                      color: Colors.red,
-                    ),
-                  ],
-                ),
+              WeatherDisplay(
+                currentWeather: _currentWeather,
               ),
               Flexible(
                 child: Column(
@@ -72,7 +59,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                             switch (result) {
                               case Success(value: final weather):
                                 setState(() {
-                                  _currentWeather = weather.weatherCondition;
+                                  _currentWeather = weather;
                                 });
                               case Failure(exception: final exception):
                                 _showDialog(exception);
@@ -102,29 +89,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
         builder: (context) {
           return ExceptionDialog(message: e.message);
         },
-      ),
-    );
-  }
-}
-
-class _TemperatureText extends StatelessWidget {
-  const _TemperatureText({
-    required String text,
-    required Color color,
-  })  : _color = color,
-        _text = text;
-
-  final String _text;
-  final Color _color;
-
-  @override
-  Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme.labelLarge!;
-    return Expanded(
-      child: Text(
-        _text,
-        style: textTheme.copyWith(color: _color),
-        textAlign: TextAlign.center,
       ),
     );
   }
