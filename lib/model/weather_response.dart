@@ -10,9 +10,9 @@ class WeatherResponse {
   factory WeatherResponse.fromJson(Map<String, dynamic> json) {
     return WeatherResponse(
       weatherCondition:
-          WeatherCondition.from(json['weather_condition'] as String),
-      maxTemperature: json['max_temperature'] as int,
-      minTemperature: json['min_temperature'] as int,
+          WeatherCondition.from(json['weather_condition'].toString()),
+      maxTemperature: int.parse(json['max_temperature'].toString()),
+      minTemperature: int.parse(json['min_temperature'].toString()),
     );
   }
 
