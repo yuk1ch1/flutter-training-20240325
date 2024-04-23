@@ -29,6 +29,11 @@ class Weather {
       return const Failure(
         UndefinedWeather(),
       );
+    } on FormatException catch (e) {
+      debugPrint(e.toString());
+      return const Failure(
+        ResponseFormatException(),
+      );
     } on Exception catch (e) {
       debugPrint(e.toString());
       return const Failure(
