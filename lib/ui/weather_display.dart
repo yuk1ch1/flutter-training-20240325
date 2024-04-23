@@ -12,28 +12,27 @@ class WeatherDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentWeather = _currentWeather;
     return Column(
       children: [
         AspectRatio(
           aspectRatio: 1,
-          child: currentWeather == null
+          child: _currentWeather == null
               ? const Placeholder()
-              : currentWeather.weatherCondition.image,
+              : _currentWeather.weatherCondition.image,
         ),
         Padding(
           padding: const EdgeInsets.all(16),
           child: Row(
             children: [
               _TemperatureText(
-                text: currentWeather != null
-                    ? '${currentWeather.minTemperature}'
+                text: _currentWeather != null
+                    ? '${_currentWeather.minTemperature}'
                     : '** ℃',
                 color: Colors.blue,
               ),
               _TemperatureText(
-                text: currentWeather != null
-                    ? '${currentWeather.maxTemperature}'
+                text: _currentWeather != null
+                    ? '${_currentWeather.maxTemperature}'
                     : '** ℃',
                 color: Colors.red,
               ),
