@@ -21,6 +21,10 @@ final class UnknownWeather extends WeatherAPIException {
   const UnknownWeather() : super(message: '天気情報の取得に失敗しました。時間をおいて再度お試しください');
 }
 
+final class ResponseFormatException extends WeatherAPIException {
+  const ResponseFormatException() : super(message: '天気情報の取得に失敗しました。');
+}
+
 /// 想定外のエラー
 final class UnexpectedException extends AppException {
   const UnexpectedException()

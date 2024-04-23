@@ -11,6 +11,7 @@
   "editor.formatOnType": true,
   "editor.guides.bracketPairs": true,
   "dart.renameFilesWithClasses": "always",
+  "dart.flutterGenerateLocalizationsOnSave": "manual",
   "editor.codeActionsOnSave": {
     "quickfix.insertSemicolon": true,
     "source.organizeImports": "explicit"
