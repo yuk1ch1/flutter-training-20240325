@@ -1,15 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'weather_request.freezed.dart';
 part 'weather_request.g.dart';
 
-@JsonSerializable()
-class WeatherRequest {
-  const WeatherRequest({
-    required this.area,
-    required this.date,
-  });
-  final String area;
-  final DateTime date;
+@freezed
+class WeatherRequest with _$WeatherRequest {
+  const factory WeatherRequest({
+    required String area,
+    required DateTime date,
+  }) = _WeatherRequest;
 
-  Map<String, dynamic> toJson() => _$WeatherRequestToJson(this);
+  factory WeatherRequest.fromJson(Map<String, dynamic> json) =>
+      _$WeatherRequestFromJson(json);
 }

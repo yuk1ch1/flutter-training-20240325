@@ -6,13 +6,14 @@ part of 'weather_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-WeatherRequest _$WeatherRequestFromJson(Map<String, dynamic> json) =>
-    WeatherRequest(
+_$WeatherRequestImpl _$$WeatherRequestImplFromJson(Map<String, dynamic> json) =>
+    _$WeatherRequestImpl(
       area: json['area'] as String,
       date: DateTime.parse(json['date'] as String),
     );
 
-Map<String, dynamic> _$WeatherRequestToJson(WeatherRequest instance) =>
+Map<String, dynamic> _$$WeatherRequestImplToJson(
+        _$WeatherRequestImpl instance) =>
     <String, dynamic>{
       'area': instance.area,
       'date': instance.date.toIso8601String(),

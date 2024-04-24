@@ -6,15 +6,17 @@ part of 'weather_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-WeatherResponse _$WeatherResponseFromJson(Map<String, dynamic> json) =>
-    WeatherResponse(
+_$WeatherResponseImpl _$$WeatherResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$WeatherResponseImpl(
       weatherCondition:
           $enumDecode(_$WeatherConditionEnumMap, json['weatherCondition']),
       maxTemperature: json['maxTemperature'] as int,
       minTemperature: json['minTemperature'] as int,
     );
 
-Map<String, dynamic> _$WeatherResponseToJson(WeatherResponse instance) =>
+Map<String, dynamic> _$$WeatherResponseImplToJson(
+        _$WeatherResponseImpl instance) =>
     <String, dynamic>{
       'weatherCondition': _$WeatherConditionEnumMap[instance.weatherCondition]!,
       'maxTemperature': instance.maxTemperature,
