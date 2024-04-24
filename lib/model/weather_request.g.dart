@@ -9,9 +9,16 @@ part of 'weather_request.dart';
 // **************************************************************************
 
 _$WeatherRequestImpl _$$WeatherRequestImplFromJson(Map<String, dynamic> json) =>
-    _$WeatherRequestImpl(
-      area: json['area'] as String,
-      date: DateTime.parse(json['date'] as String),
+    $checkedCreate(
+      r'_$WeatherRequestImpl',
+      json,
+      ($checkedConvert) {
+        final val = _$WeatherRequestImpl(
+          area: $checkedConvert('area', (v) => v as String),
+          date: $checkedConvert('date', (v) => DateTime.parse(v as String)),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$$WeatherRequestImplToJson(

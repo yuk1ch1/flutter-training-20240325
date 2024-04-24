@@ -10,11 +10,23 @@ part of 'weather_response.dart';
 
 _$WeatherResponseImpl _$$WeatherResponseImplFromJson(
         Map<String, dynamic> json) =>
-    _$WeatherResponseImpl(
-      weatherCondition:
-          $enumDecode(_$WeatherConditionEnumMap, json['weather_condition']),
-      maxTemperature: json['max_temperature'] as int,
-      minTemperature: json['min_temperature'] as int,
+    $checkedCreate(
+      r'_$WeatherResponseImpl',
+      json,
+      ($checkedConvert) {
+        final val = _$WeatherResponseImpl(
+          weatherCondition: $checkedConvert('weather_condition',
+              (v) => $enumDecode(_$WeatherConditionEnumMap, v)),
+          maxTemperature: $checkedConvert('max_temperature', (v) => v as int),
+          minTemperature: $checkedConvert('min_temperature', (v) => v as int),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'weatherCondition': 'weather_condition',
+        'maxTemperature': 'max_temperature',
+        'minTemperature': 'min_temperature'
+      },
     );
 
 Map<String, dynamic> _$$WeatherResponseImplToJson(
