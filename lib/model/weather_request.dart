@@ -1,16 +1,15 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'weather_request.g.dart';
+
+@JsonSerializable()
 class WeatherRequest {
   const WeatherRequest({
     required this.area,
     required this.date,
   });
-
   final String area;
   final DateTime date;
 
-  Map<String, dynamic> toJson() {
-    return {
-      'area': area,
-      'date': date.toIso8601String(),
-    };
-  }
+  Map<String, dynamic> toJson() => _$WeatherRequestToJson(this);
 }
