@@ -12,17 +12,18 @@ _$WeatherResponseImpl _$$WeatherResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$WeatherResponseImpl(
       weatherCondition:
-          $enumDecode(_$WeatherConditionEnumMap, json['weatherCondition']),
-      maxTemperature: json['maxTemperature'] as int,
-      minTemperature: json['minTemperature'] as int,
+          $enumDecode(_$WeatherConditionEnumMap, json['weather_condition']),
+      maxTemperature: json['max_temperature'] as int,
+      minTemperature: json['min_temperature'] as int,
     );
 
 Map<String, dynamic> _$$WeatherResponseImplToJson(
         _$WeatherResponseImpl instance) =>
     <String, dynamic>{
-      'weatherCondition': _$WeatherConditionEnumMap[instance.weatherCondition]!,
-      'maxTemperature': instance.maxTemperature,
-      'minTemperature': instance.minTemperature,
+      'weather_condition':
+          _$WeatherConditionEnumMap[instance.weatherCondition]!,
+      'max_temperature': instance.maxTemperature,
+      'min_temperature': instance.minTemperature,
     };
 
 const _$WeatherConditionEnumMap = {

@@ -20,8 +20,11 @@ WeatherResponse _$WeatherResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$WeatherResponse {
+  @JsonKey(name: 'weather_condition')
   WeatherCondition get weatherCondition => throw _privateConstructorUsedError;
+  @JsonKey(name: 'max_temperature')
   int get maxTemperature => throw _privateConstructorUsedError;
+  @JsonKey(name: 'min_temperature')
   int get minTemperature => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,9 +40,9 @@ abstract class $WeatherResponseCopyWith<$Res> {
       _$WeatherResponseCopyWithImpl<$Res, WeatherResponse>;
   @useResult
   $Res call(
-      {WeatherCondition weatherCondition,
-      int maxTemperature,
-      int minTemperature});
+      {@JsonKey(name: 'weather_condition') WeatherCondition weatherCondition,
+      @JsonKey(name: 'max_temperature') int maxTemperature,
+      @JsonKey(name: 'min_temperature') int minTemperature});
 }
 
 /// @nodoc
@@ -85,9 +88,9 @@ abstract class _$$WeatherResponseImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {WeatherCondition weatherCondition,
-      int maxTemperature,
-      int minTemperature});
+      {@JsonKey(name: 'weather_condition') WeatherCondition weatherCondition,
+      @JsonKey(name: 'max_temperature') int maxTemperature,
+      @JsonKey(name: 'min_temperature') int minTemperature});
 }
 
 /// @nodoc
@@ -126,18 +129,21 @@ class __$$WeatherResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$WeatherResponseImpl implements _WeatherResponse {
   const _$WeatherResponseImpl(
-      {required this.weatherCondition,
-      required this.maxTemperature,
-      required this.minTemperature});
+      {@JsonKey(name: 'weather_condition') required this.weatherCondition,
+      @JsonKey(name: 'max_temperature') required this.maxTemperature,
+      @JsonKey(name: 'min_temperature') required this.minTemperature});
 
   factory _$WeatherResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$WeatherResponseImplFromJson(json);
 
   @override
+  @JsonKey(name: 'weather_condition')
   final WeatherCondition weatherCondition;
   @override
+  @JsonKey(name: 'max_temperature')
   final int maxTemperature;
   @override
+  @JsonKey(name: 'min_temperature')
   final int minTemperature;
 
   @override
@@ -180,18 +186,23 @@ class _$WeatherResponseImpl implements _WeatherResponse {
 
 abstract class _WeatherResponse implements WeatherResponse {
   const factory _WeatherResponse(
-      {required final WeatherCondition weatherCondition,
-      required final int maxTemperature,
+      {@JsonKey(name: 'weather_condition')
+      required final WeatherCondition weatherCondition,
+      @JsonKey(name: 'max_temperature') required final int maxTemperature,
+      @JsonKey(name: 'min_temperature')
       required final int minTemperature}) = _$WeatherResponseImpl;
 
   factory _WeatherResponse.fromJson(Map<String, dynamic> json) =
       _$WeatherResponseImpl.fromJson;
 
   @override
+  @JsonKey(name: 'weather_condition')
   WeatherCondition get weatherCondition;
   @override
+  @JsonKey(name: 'max_temperature')
   int get maxTemperature;
   @override
+  @JsonKey(name: 'min_temperature')
   int get minTemperature;
   @override
   @JsonKey(ignore: true)
