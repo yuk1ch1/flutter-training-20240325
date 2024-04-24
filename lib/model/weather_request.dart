@@ -1,5 +1,5 @@
 class WeatherRequest {
-  WeatherRequest({
+  const WeatherRequest({
     required this.area,
     required this.date,
   });
