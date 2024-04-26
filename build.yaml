@@ -5,7 +5,14 @@ targets:
         options:
           ignore_for_file:
             - type=lint
+      freezed:
+        generate_for:
+          include:
+            - lib/model/*.dart
       json_serializable:
+        generate_for:
+          include:
+            - lib/model/*.dart
         options:
           field_rename: snake
           checked: true
