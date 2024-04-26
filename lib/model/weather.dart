@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_training/model/weather_exception.dart';
 import 'package:flutter_training/model/weather_request.dart';
 import 'package:flutter_training/model/weather_response.dart';
+import 'package:json_annotation/json_annotation.dart'
+    show CheckedFromJsonException;
 import 'package:yumemi_weather/yumemi_weather.dart';
 
 class Weather {
@@ -29,7 +31,7 @@ class Weather {
       return const Failure(
         UndefinedWeather(),
       );
-    } on FormatException catch (e) {
+    } on CheckedFromJsonException catch (e) {
       debugPrint(e.toString());
       return const Failure(
         ResponseFormatException(),

@@ -13,7 +13,7 @@
   "dart.renameFilesWithClasses": "always",
   "dart.flutterGenerateLocalizationsOnSave": "manual",
   "editor.codeActionsOnSave": {
-    "quickfix.insertSemicolon": true,
+    "quickfix.insertSemicolon": "explicit",
     "source.organizeImports": "explicit"
   },
   "explorer.fileNesting.enabled": true,
