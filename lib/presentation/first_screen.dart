@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_training/router_config.dart';
-import 'package:flutter_training/ui/on_end_of_frame_mixin.dart';
+import 'package:flutter_training/presentation/on_end_of_frame_mixin.dart';
 
 class FirstScreen extends StatefulWidget {
   const FirstScreen({super.key});

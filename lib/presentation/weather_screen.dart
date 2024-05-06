@@ -5,8 +5,8 @@ import 'package:flutter_training/model/weather.dart';
 import 'package:flutter_training/model/weather_exception.dart';
 import 'package:flutter_training/model/weather_request.dart';
 import 'package:flutter_training/model/weather_response.dart';
-import 'package:flutter_training/ui/exception_dialog.dart';
-import 'package:flutter_training/ui/weather_display.dart';
+import 'package:flutter_training/presentation/exception_dialog.dart';
+import 'package:flutter_training/presentation/weather_display.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yumemi_weather/yumemi_weather.dart';
 
