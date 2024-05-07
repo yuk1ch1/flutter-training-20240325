@@ -1,29 +1,30 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_training/model/weather.dart';
-import 'package:flutter_training/model/weather_exception.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_training/model/weather_request.dart';
-import 'package:flutter_training/model/weather_response.dart';
 import 'package:flutter_training/presentation/exception_dialog.dart';
 import 'package:flutter_training/presentation/weather_display.dart';
+import 'package:flutter_training/presentation/weather_screen_state_controller.dart';
 import 'package:go_router/go_router.dart';
-import 'package:yumemi_weather/yumemi_weather.dart';
 
-class WeatherScreen extends StatefulWidget {
+class WeatherScreen extends ConsumerWidget {
   const WeatherScreen({super.key});
 
-  @override
-  State<WeatherScreen> createState() => _WeatherScreenState();
-}
-
-class _WeatherScreenState extends State<WeatherScreen> {
-  final _weather = Weather(client: YumemiWeather());
-  WeatherResponse? _currentWeather;
   static const margin = SizedBox(height: 80);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(
+      weatherScreenStateControllerProvider,
+      (_, next) {
+        next.whenOrNull(
+          error: (message) {
+            _showDialog(message, context);
+          },
+        );
+      },
+    );
     return Scaffold(
       body: Center(
         child: FractionallySizedBox(
@@ -31,9 +32,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
           child: Column(
             children: [
               const Spacer(),
-              WeatherDisplay(
-                currentWeather: _currentWeather,
-              ),
+              const WeatherDisplay(),
               Flexible(
                 child: Column(
                   children: [
@@ -50,20 +49,16 @@ class _WeatherScreenState extends State<WeatherScreen> {
                         ),
                         TextButton(
                           onPressed: () {
-                            final result = _weather.fetch(
-                              WeatherRequest(
-                                area: 'Tokyo',
-                                date: DateTime.now(),
-                              ),
-                            );
-                            switch (result) {
-                              case Success(value: final weather):
-                                setState(() {
-                                  _currentWeather = weather;
-                                });
-                              case Failure(exception: final exception):
-                                _showDialog(exception);
-                            }
+                            ref
+                                .read(
+                                  weatherScreenStateControllerProvider.notifier,
+                                )
+                                .update(
+                                  WeatherRequest(
+                                    area: 'Tokyo',
+                                    date: DateTime.now(),
+                                  ),
+                                );
                           },
                           child: const Text(
                             'reload',
@@ -82,12 +77,12 @@ class _WeatherScreenState extends State<WeatherScreen> {
     );
   }
 
-  void _showDialog(AppException e) {
+  void _showDialog(String message, BuildContext context) {
     return unawaited(
       showDialog(
         context: context,
         builder: (context) {
-          return ExceptionDialog(message: e.message);
+          return ExceptionDialog(message: message);
         },
       ),
     );
