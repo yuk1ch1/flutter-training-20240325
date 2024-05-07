@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_training/router_config.dart';
 import 'package:flutter_training/presentation/on_end_of_frame_mixin.dart';
+import 'package:flutter_training/router_config.dart';
 
 class FirstScreen extends StatefulWidget {
   const FirstScreen({super.key});
@@ -12,7 +12,6 @@ class FirstScreen extends StatefulWidget {
 }
 
 class _FirstScreenState extends State<FirstScreen> with OnEndOfFrameMixin {
-
   @override
   Widget build(BuildContext context) {
     return const ColoredBox(color: Colors.green);
