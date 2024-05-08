@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_training/gen/assets.gen.dart';
 import 'package:flutter_training/model/weather_condition.dart';
-import 'package:flutter_training/presentation/weather_screen_state_controller.dart';
+import 'package:flutter_training/presentation/screen/weather/weather_screen_state_controller.dart';
 
 class WeatherDisplay extends ConsumerWidget {
   const WeatherDisplay({super.key});

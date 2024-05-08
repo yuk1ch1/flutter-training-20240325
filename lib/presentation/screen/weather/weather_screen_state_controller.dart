@@ -1,7 +1,7 @@
 import 'package:flutter_training/model/weather.dart';
 import 'package:flutter_training/model/weather_request.dart';
 import 'package:flutter_training/model/weather_response.dart';
-import 'package:flutter_training/presentation/weather_screen_state.dart';
+import 'package:flutter_training/presentation/screen/weather/weather_screen_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'weather_screen_state_controller.g.dart';

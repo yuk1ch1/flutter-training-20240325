@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_training/presentation/first_screen.dart';
-import 'package:flutter_training/presentation/weather_screen.dart';
+import 'package:flutter_training/presentation/screen/first/first_screen.dart';
+import 'package:flutter_training/presentation/screen/weather/weather_screen.dart';
 import 'package:go_router/go_router.dart';
 
 part 'router_config.g.dart';

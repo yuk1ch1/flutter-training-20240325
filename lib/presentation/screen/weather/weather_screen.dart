@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_training/model/weather_request.dart';
-import 'package:flutter_training/presentation/exception_dialog.dart';
-import 'package:flutter_training/presentation/weather_display.dart';
-import 'package:flutter_training/presentation/weather_screen_state_controller.dart';
+import 'package:flutter_training/presentation/components/exception_dialog.dart';
+import 'package:flutter_training/presentation/screen/weather/weather_display.dart';
+import 'package:flutter_training/presentation/screen/weather/weather_screen_state_controller.dart';
 import 'package:go_router/go_router.dart';
 
 class WeatherScreen extends ConsumerWidget {
