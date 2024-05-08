@@ -15,16 +15,7 @@ class WeatherScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen(
-      weatherScreenStateControllerProvider,
-      (_, next) {
-        next.whenOrNull(
-          error: (message) {
-            _showDialog(message, context);
-          },
-        );
-      },
-    );
+    _showDialogOnFailedGetWeather(ref, context);
     return Scaffold(
       body: Center(
         child: FractionallySizedBox(
@@ -77,14 +68,23 @@ class WeatherScreen extends ConsumerWidget {
     );
   }
 
-  void _showDialog(String message, BuildContext context) {
-    return unawaited(
-      showDialog(
-        context: context,
-        builder: (context) {
-          return ExceptionDialog(message: message);
-        },
-      ),
+  void _showDialogOnFailedGetWeather(WidgetRef ref, BuildContext context) {
+    ref.listen(
+      weatherScreenStateControllerProvider,
+      (_, next) {
+        next.whenOrNull(
+          error: (message) {
+            unawaited(
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return ExceptionDialog(message: message);
+                },
+              ),
+            );
+          },
+        );
+      },
     );
   }
 }
