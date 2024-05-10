@@ -77,9 +77,7 @@ class WeatherScreen extends ConsumerWidget {
             unawaited(
               showDialog(
                 context: context,
-                builder: (context) {
-                  return ExceptionDialog(message: message);
-                },
+                builder: (context) => ExceptionDialog(message: message),
               ),
             );
           },
