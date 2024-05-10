@@ -11,8 +11,6 @@ import 'package:go_router/go_router.dart';
 class WeatherScreen extends ConsumerWidget {
   const WeatherScreen({super.key});
 
-  static const margin = SizedBox(height: 80);
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     _showDialogOnFailedGetWeather(ref, context);
@@ -27,7 +25,7 @@ class WeatherScreen extends ConsumerWidget {
               Flexible(
                 child: Column(
                   children: [
-                    margin,
+                    const SizedBox(height: 80),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
