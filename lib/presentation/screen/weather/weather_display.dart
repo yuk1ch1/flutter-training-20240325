@@ -1,38 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_training/gen/assets.gen.dart';
 import 'package:flutter_training/model/weather_condition.dart';
-import 'package:flutter_training/model/weather_response.dart';
+import 'package:flutter_training/presentation/screen/weather/weather_screen_state_controller.dart';
 
-class WeatherDisplay extends StatelessWidget {
-  const WeatherDisplay({required WeatherResponse? currentWeather, super.key})
-      : _currentWeather = currentWeather;
-
-  final WeatherResponse? _currentWeather;
+class WeatherDisplay extends ConsumerWidget {
+  const WeatherDisplay({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentWeather =
+        ref.watch(weatherScreenStateControllerProvider).currentWeather;
     return Column(
       children: [
         AspectRatio(
           aspectRatio: 1,
-          child: _currentWeather == null
+          child: currentWeather == null
               ? const Placeholder()
-              : _currentWeather.weatherCondition.image,
+              : currentWeather.weatherCondition.image,
         ),
         Padding(
           padding: const EdgeInsets.all(16),
           child: Row(
             children: [
               _TemperatureText(
-                text: _currentWeather != null
-                    ? '${_currentWeather.minTemperature}'
+                text: currentWeather != null
+                    ? '${currentWeather.minTemperature}'
                     : '** ℃',
                 color: Colors.blue,
               ),
               _TemperatureText(
-                text: _currentWeather != null
-                    ? '${_currentWeather.maxTemperature}'
+                text: currentWeather != null
+                    ? '${currentWeather.maxTemperature}'
                     : '** ℃',
                 color: Colors.red,
               ),
