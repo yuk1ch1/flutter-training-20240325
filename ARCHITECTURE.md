@@ -9,6 +9,7 @@ presentation(screen or screen + controller) - model
     - modelとのやりとりが発生、肥大化する場合はscreenだけでなく別途controllerクラスを用意
     - 状態管理が必要な場合はRiverpodで行う
 - components: 特定の画面に依存しないUIのパーツ
+- mixin: 特定の画面に限定しない、presentation全体で使われる予定のmixin
 
 
 ```mermaid
