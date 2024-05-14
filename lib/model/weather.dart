@@ -34,11 +34,6 @@ class Weather {
             UnknownWeather(),
           ),
       };
-    } on UndefinedWeather catch (e) {
-      debugPrint(e.toString());
-      return const Failure(
-        UndefinedWeather(),
-      );
     } on CheckedFromJsonException catch (e) {
       debugPrint(e.toString());
       return const Failure(
