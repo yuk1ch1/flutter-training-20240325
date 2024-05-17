@@ -43,32 +43,22 @@ void main() {
 
     test('状態更新テスト_更新成功した場合', () {
       // Given
+      const dummyResponse = WeatherResponse(
+        weatherCondition: WeatherCondition.cloudy,
+        maxTemperature: 21,
+        minTemperature: 7,
+      );
+
       const expectedResponse = WeatherScreenState.success(
-        weather: WeatherResponse(
-          weatherCondition: WeatherCondition.cloudy,
-          maxTemperature: 21,
-          minTemperature: 7,
-        ),
+        weather: dummyResponse,
       );
 
       provideDummy<Result<WeatherResponse, AppException>>(
-        const Success(
-          WeatherResponse(
-            weatherCondition: WeatherCondition.cloudy,
-            maxTemperature: 21,
-            minTemperature: 7,
-          ),
-        ),
+        const Success(dummyResponse),
       );
 
       when(mock.fetch(any)).thenReturn(
-        const Success<WeatherResponse, AppException>(
-          WeatherResponse(
-            weatherCondition: WeatherCondition.cloudy,
-            maxTemperature: 21,
-            minTemperature: 7,
-          ),
-        ),
+        const Success<WeatherResponse, AppException>(dummyResponse),
       );
 
       // When
