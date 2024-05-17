@@ -38,7 +38,7 @@ void main() {
   group('天気情報取得のテスト', () {
     test(
       '天気情報取得に成功_正常なレスポンスを返した場合',
-      () async {
+      () {
         // Given
         when(
           mockYumemiWeather.fetchWeather(any),
@@ -62,7 +62,7 @@ void main() {
           minTemperature: 20,
         );
 
-        // Verify
+        // Then
         expect(
           response,
           isA<Success<WeatherResponse, AppException>>().having(
@@ -74,7 +74,7 @@ void main() {
       },
     );
 
-    test('天気情報取得に失敗_APIがInvalidParameter返した場合', () async {
+    test('天気情報取得に失敗_APIがInvalidParameter返した場合', () {
       when(
         mockYumemiWeather.fetchWeather(any),
       ).thenThrow(YumemiWeatherError.invalidParameter);
@@ -95,7 +95,7 @@ void main() {
       );
     });
 
-    test('天気情報取得に失敗_APIが不明なエラーを返した場合', () async {
+    test('天気情報取得に失敗_APIが不明なエラーを返した場合', () {
       when(
         mockYumemiWeather.fetchWeather(any),
       ).thenThrow(YumemiWeatherError.unknown);
@@ -116,7 +116,7 @@ void main() {
       );
     });
 
-    test('天気情報取得に失敗_APIがアプリ側未定義の天気を返した場合', () async {
+    test('天気情報取得に失敗_APIがアプリ側未定義の天気を返した場合', () {
       when(
         mockYumemiWeather.fetchWeather(any),
       ).thenReturn('''
