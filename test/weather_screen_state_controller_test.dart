@@ -30,9 +30,7 @@ void main() {
     controller = container.read(weatherScreenStateControllerProvider.notifier);
   });
 
-  tearDown(() {
-    container.dispose();
-  });
+  tearDown(() => container.dispose());
 
   group('WeatherScreenで利用する状態の更新テスト', () {
     test('状態更新テスト_初期状態', () {
