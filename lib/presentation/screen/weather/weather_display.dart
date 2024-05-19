@@ -8,6 +8,9 @@ import 'package:flutter_training/presentation/screen/weather/weather_screen_stat
 class WeatherDisplay extends ConsumerWidget {
   const WeatherDisplay({super.key});
 
+  @visibleForTesting
+  static const defaultTemperature = '** ℃';
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentWeather =
@@ -27,13 +30,13 @@ class WeatherDisplay extends ConsumerWidget {
               _TemperatureText(
                 text: currentWeather != null
                     ? '${currentWeather.minTemperature}'
-                    : '** ℃',
+                    : defaultTemperature,
                 color: Colors.blue,
               ),
               _TemperatureText(
                 text: currentWeather != null
                     ? '${currentWeather.maxTemperature}'
-                    : '** ℃',
+                    : defaultTemperature,
                 color: Colors.red,
               ),
             ],
@@ -69,8 +72,9 @@ class _TemperatureText extends StatelessWidget {
 
 extension _WeatherSVGPicture on WeatherCondition {
   SvgPicture get image => switch (this) {
-        WeatherCondition.sunny => Assets.images.sunny.svg(),
-        WeatherCondition.cloudy => Assets.images.cloudy.svg(),
-        WeatherCondition.rainy => Assets.images.rainy.svg(),
+        WeatherCondition.sunny => Assets.images.sunny.svg(semanticsLabel: name),
+        WeatherCondition.cloudy =>
+          Assets.images.cloudy.svg(semanticsLabel: name),
+        WeatherCondition.rainy => Assets.images.rainy.svg(semanticsLabel: name),
       };
 }
