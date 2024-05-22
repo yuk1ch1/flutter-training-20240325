@@ -31,6 +31,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   json_serializable: ^6.7.1
+  mockito: ^5.4.4
   riverpod_generator: ^2.4.0
   riverpod_lint: ^2.3.10
   yumemi_lints: ^1.7.0

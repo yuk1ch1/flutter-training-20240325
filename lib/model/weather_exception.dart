@@ -3,11 +3,6 @@ sealed class AppException implements Exception {
   final String message;
 }
 
-/// Domainエラー
-final class UndefinedWeather extends AppException {
-  const UndefinedWeather() : super(message: '天気情報の取得に失敗しました。適切な情報を取得できませんでした');
-}
-
 /// APIエラー
 sealed class WeatherAPIException extends AppException {
   const WeatherAPIException({required super.message});
