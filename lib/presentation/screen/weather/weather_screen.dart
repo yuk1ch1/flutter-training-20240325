@@ -11,6 +11,9 @@ import 'package:go_router/go_router.dart';
 class WeatherScreen extends ConsumerWidget {
   const WeatherScreen({super.key});
 
+  @visibleForTesting
+  static final reloadButton = UniqueKey();
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     _showDialogOnFailedGetWeather(ref, context);
@@ -37,6 +40,7 @@ class WeatherScreen extends ConsumerWidget {
                           ),
                         ),
                         TextButton(
+                          key: reloadButton,
                           onPressed: () {
                             ref
                                 .read(

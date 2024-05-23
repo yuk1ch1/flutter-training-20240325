@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_training/model/weather_exception.dart';
 import 'package:flutter_training/model/weather_request.dart';
 import 'package:flutter_training/model/weather_response.dart';
+import 'package:flutter_training/model/yumemi_weather_provider.dart';
 import 'package:json_annotation/json_annotation.dart'
     show CheckedFromJsonException;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -13,7 +14,8 @@ part 'weather.g.dart';
 
 @riverpod
 Weather weather(WeatherRef ref) {
-  return Weather(client: YumemiWeather());
+  final client = ref.watch(yumemiWeatherProvider);
+  return Weather(client: client);
 }
 
 class Weather {
