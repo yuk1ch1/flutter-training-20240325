@@ -3,12 +3,14 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:async' as _i3;
+
 import 'package:flutter_training/model/weather.dart' as _i2;
-import 'package:flutter_training/model/weather_exception.dart' as _i4;
-import 'package:flutter_training/model/weather_request.dart' as _i5;
-import 'package:flutter_training/model/weather_response.dart' as _i3;
+import 'package:flutter_training/model/weather_exception.dart' as _i5;
+import 'package:flutter_training/model/weather_request.dart' as _i6;
+import 'package:flutter_training/model/weather_response.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i6;
+import 'package:mockito/src/dummies.dart' as _i7;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -28,28 +30,30 @@ import 'package:mockito/src/dummies.dart' as _i6;
 /// See the documentation for Mockito's code generation for more information.
 class MockWeather extends _i1.Mock implements _i2.Weather {
   @override
-  _i2.Result<_i3.WeatherResponse, _i4.AppException> fetch(
-          _i5.WeatherRequest? request) =>
+  _i3.Future<_i2.Result<_i4.WeatherResponse, _i5.AppException>> fetch(
+          _i6.WeatherRequest? request) =>
       (super.noSuchMethod(
         Invocation.method(
           #fetch,
           [request],
         ),
-        returnValue:
-            _i6.dummyValue<_i2.Result<_i3.WeatherResponse, _i4.AppException>>(
+        returnValue: _i3
+            .Future<_i2.Result<_i4.WeatherResponse, _i5.AppException>>.value(
+            _i7.dummyValue<_i2.Result<_i4.WeatherResponse, _i5.AppException>>(
           this,
           Invocation.method(
             #fetch,
             [request],
           ),
-        ),
-        returnValueForMissingStub:
-            _i6.dummyValue<_i2.Result<_i3.WeatherResponse, _i4.AppException>>(
+        )),
+        returnValueForMissingStub: _i3
+            .Future<_i2.Result<_i4.WeatherResponse, _i5.AppException>>.value(
+            _i7.dummyValue<_i2.Result<_i4.WeatherResponse, _i5.AppException>>(
           this,
           Invocation.method(
             #fetch,
             [request],
           ),
-        ),
-      ) as _i2.Result<_i3.WeatherResponse, _i4.AppException>);
+        )),
+      ) as _i3.Future<_i2.Result<_i4.WeatherResponse, _i5.AppException>>);
 }
