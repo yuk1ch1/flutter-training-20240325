@@ -42,16 +42,19 @@ class WeatherScreen extends ConsumerWidget {
                         TextButton(
                           key: reloadButton,
                           onPressed: () {
-                            ref
-                                .read(
-                                  weatherScreenStateControllerProvider.notifier,
-                                )
-                                .update(
-                                  WeatherRequest(
-                                    area: 'Tokyo',
-                                    date: DateTime.now(),
+                            unawaited(
+                              ref
+                                  .read(
+                                    weatherScreenStateControllerProvider
+                                        .notifier,
+                                  )
+                                  .update(
+                                    WeatherRequest(
+                                      area: 'Tokyo',
+                                      date: DateTime.now(),
+                                    ),
                                   ),
-                                );
+                            );
                           },
                           child: const Text(
                             'reload',

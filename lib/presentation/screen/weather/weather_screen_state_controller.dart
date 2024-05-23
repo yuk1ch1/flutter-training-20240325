@@ -12,8 +12,8 @@ class WeatherScreenStateController extends _$WeatherScreenStateController {
     return const WeatherScreenState.initial();
   }
 
-  void update(WeatherRequest request) {
-    final response = ref.read(weatherProvider).fetch(request);
+  Future<void> update(WeatherRequest request) async {
+    final response = await ref.read(weatherProvider).fetch(request);
     switch (response) {
       case Success(value: final weather):
         state = WeatherScreenState.success(weather: weather);
