@@ -38,10 +38,10 @@ void main() {
   group('天気情報取得のテスト', () {
     test(
       '天気情報取得に成功_正常なレスポンスを返した場合',
-      () {
+      () async {
         // Given
         when(
-          mockYumemiWeather.fetchWeather(any),
+          mockYumemiWeather.syncFetchWeather(any),
         ).thenReturn(
           '''
             {
@@ -54,7 +54,7 @@ void main() {
         );
 
         // When
-        final response = container.read(weatherProvider).fetch(request);
+        final response = await container.read(weatherProvider).fetch(request);
 
         const expectedResponse = WeatherResponse(
           weatherCondition: WeatherCondition.sunny,
@@ -74,13 +74,13 @@ void main() {
       },
     );
 
-    test('天気情報取得に失敗_APIがInvalidParameter返した場合', () {
+    test('天気情報取得に失敗_APIがInvalidParameter返した場合', () async {
       when(
-        mockYumemiWeather.fetchWeather(any),
+        mockYumemiWeather.syncFetchWeather(any),
       ).thenThrow(YumemiWeatherError.invalidParameter);
 
       // When
-      final response = container.read(weatherProvider).fetch(request);
+      final response = await container.read(weatherProvider).fetch(request);
 
       const expectedResponse = InvalidParameter();
 
@@ -95,13 +95,13 @@ void main() {
       );
     });
 
-    test('天気情報取得に失敗_APIが不明なエラーを返した場合', () {
+    test('天気情報取得に失敗_APIが不明なエラーを返した場合', () async {
       when(
-        mockYumemiWeather.fetchWeather(any),
+        mockYumemiWeather.syncFetchWeather(any),
       ).thenThrow(YumemiWeatherError.unknown);
 
       // When
-      final response = container.read(weatherProvider).fetch(request);
+      final response = await container.read(weatherProvider).fetch(request);
 
       const expectedResponse = UnknownWeather();
 
@@ -116,9 +116,9 @@ void main() {
       );
     });
 
-    test('天気情報取得に失敗_APIがアプリ側未定義の天気を返した場合', () {
+    test('天気情報取得に失敗_APIがアプリ側未定義の天気を返した場合', () async {
       when(
-        mockYumemiWeather.fetchWeather(any),
+        mockYumemiWeather.syncFetchWeather(any),
       ).thenReturn('''
             {
               "weather_condition": "dummy",
@@ -129,7 +129,7 @@ void main() {
         ''');
 
       // When
-      final response = container.read(weatherProvider).fetch(request);
+      final response = await container.read(weatherProvider).fetch(request);
 
       const expectedResponse = ResponseFormatException();
 
