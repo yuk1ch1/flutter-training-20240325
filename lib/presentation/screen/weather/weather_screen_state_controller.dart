@@ -13,6 +13,7 @@ class WeatherScreenStateController extends _$WeatherScreenStateController {
   }
 
   Future<void> update(WeatherRequest request) async {
+    state = WeatherScreenState.loading(weather: state.currentWeather);
     final response = await ref.read(weatherProvider).fetch(request);
     switch (response) {
       case Success(value: final weather):
