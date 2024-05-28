@@ -32,13 +32,17 @@ flowchart TB
     Provider[[provider]];
   end
 
+  weatherProvider[["weatherProvider"]];
+  yumemiWeatherProvider[["yumemiWeatherProvider"]];
   weatherScreenStateControllerProvider[["weatherScreenStateControllerProvider"]];
   WeatherDisplay((WeatherDisplay));
   WeatherScreen((WeatherScreen));
 
   weatherScreenStateControllerProvider ==> WeatherDisplay;
+  weatherScreenStateControllerProvider ==> WeatherScreen;
   weatherScreenStateControllerProvider --> WeatherScreen;
   weatherScreenStateControllerProvider -.-> WeatherScreen;
+  yumemiWeatherProvider ==> weatherProvider;
 ```
 
 ### model

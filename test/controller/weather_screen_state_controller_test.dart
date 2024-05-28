@@ -41,7 +41,7 @@ void main() {
       );
     });
 
-    test('状態更新テスト_更新成功した場合', () {
+    test('状態更新テスト_更新成功した場合', () async {
       // Given
       const dummyResponse = WeatherResponse(
         weatherCondition: WeatherCondition.cloudy,
@@ -57,12 +57,13 @@ void main() {
         const Success(dummyResponse),
       );
 
-      when(mock.fetch(any)).thenReturn(
-        const Success<WeatherResponse, AppException>(dummyResponse),
+      when(mock.fetch(any)).thenAnswer(
+        (_) async =>
+            const Success<WeatherResponse, AppException>(dummyResponse),
       );
 
       // When
-      controller.update(request);
+      await controller.update(request);
 
       // Then
       expect(
@@ -71,7 +72,7 @@ void main() {
       );
     });
 
-    test('状態更新テスト_更新失敗した場合', () {
+    test('状態更新テスト_更新失敗した場合', () async {
       // Given
       const expectedResponse = UnknownWeather();
 
@@ -81,14 +82,14 @@ void main() {
         ),
       );
 
-      when(mock.fetch(any)).thenReturn(
-        const Failure<WeatherResponse, AppException>(
+      when(mock.fetch(any)).thenAnswer(
+        (_) async => const Failure<WeatherResponse, AppException>(
           expectedResponse,
         ),
       );
 
       // When
-      controller.update(request);
+      await controller.update(request);
 
       // Then
       expect(

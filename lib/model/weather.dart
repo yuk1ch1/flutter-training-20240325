@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_training/model/weather_exception.dart';
 import 'package:flutter_training/model/weather_request.dart';
 import 'package:flutter_training/model/weather_response.dart';
@@ -22,10 +22,12 @@ class Weather {
   const Weather({required YumemiWeather client}) : _client = client;
   final YumemiWeather _client;
 
-  Result<WeatherResponse, AppException> fetch(WeatherRequest request) {
+  Future<Result<WeatherResponse, AppException>> fetch(
+    WeatherRequest request,
+  ) async {
     try {
       final jsonSring = jsonEncode(request);
-      final response = _client.fetchWeather(jsonSring);
+      final response = await compute(_client.syncFetchWeather, jsonSring);
       final responseJSON = jsonDecode(response) as Map<String, dynamic>;
       return Success(WeatherResponse.fromJson(responseJSON));
     } on YumemiWeatherError catch (e) {
